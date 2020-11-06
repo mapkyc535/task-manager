@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }} :: {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+
+<form action="{% url 'delete' %}" method="post">
+    {% csrf_token %}
+
+    <div class="input-group mb-3">
+        <label for="{{ form.number.id_for_label }}"></label>
+        {{ form.number }}
+        <div class="invalid-feedback">
+            {{ form.number.errors }}
+        </div>
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Удалить</button>
+        </div>
+    </div>
+
+</form>
+
+{% if message %}
+<div class="alert alert-danger" role="alert">
+  {{ message }}
+</div>
+{% endif %}
+
+{% endblock %}

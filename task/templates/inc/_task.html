@@ -1,0 +1,16 @@
+<div class="card text-white bg-dark my-1 mx-1" style="max-width: 26rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <p class="card-text">{{ item.text }}</p>
+            <hr class="my-1">
+            {% if item.status %}
+            <p class="card-text">готово</p>
+            {% else %}
+            <p class="card-text">не готово</p>
+            {% endif %}
+            <hr class="my-1">
+            <p class="card-text ">сделать к {{ item.date_of_completion|date:"d:m:Y" }}</p>
+            <hr class="my-1">
+            <p class="card-text text-muted">добавлено {{ item.created_at|date:"d:m:Y" }}</p>
+        </div>
+    </div>

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }} :: {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+
+<form action="{% url 'add' %}" method="post">
+    {% csrf_token %}
+
+    <div class="input-group row">
+        <label for="{{ form.title.id_for_label }}" class="col-sm-2 col-form-label">Заголовок</label>
+        <div class="col-sm-10">
+            {{ form.title }}
+        </div>
+        <div class="invalid-feedback">
+            {{ form.title.errors }}
+        </div>
+    </div>
+
+    <div class="input-group row">
+        <label for="{{ form.text.id_for_label }}" class="col-sm-2 col-form-label">Текст задачи</label>
+        <div class="col-sm-10">
+            {{ form.text }}
+        </div>
+        <div class="invalid-feedback">
+            {{ form.text.errors }}
+        </div>
+    </div>
+
+    <div class="input-group row">
+        <label for="{{ form.date_of_completion.id_for_label }}" class="col-sm-2 col-form-label"">Дата выполнения</label>
+        <div class="col-sm-10">
+            {{ form.date_of_completion }}
+        </div>
+        <div class="invalid-feedback">
+            {{ form.date_of_completion.errors }}
+        </div>
+    </div>
+
+    <div class="input-group row">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-secondary btn-lg btn-block">Добавить</button>
+        </div>
+    </div>
+</form>
+
+{% if message %}
+<div class="alert alert-danger" role="alert">
+  {{ message }}
+</div>
+{% endif %}
+
+{% endblock %}

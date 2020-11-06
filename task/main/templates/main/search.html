@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }} :: {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+
+<form action="{% url 'search' %}" method="post">
+    {% csrf_token %}
+
+
+    <div class="input-group mb-3">
+        <label for="{{ form.number.id_for_label }}"></label>
+        {{ form.number }}
+        <div class="invalid-feedback">
+            {{ form.number.errors }}
+        </div>
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Поиск</button>
+        </div>
+    </div>
+
+</form>
+
+{% if message %}
+<div class="alert alert-danger" role="alert">
+  {{ message }}
+</div>
+{% endif %}
+
+{% if item %}
+{% include 'inc/_task.html' %}
+{% endif %}
+
+{% endblock %}
